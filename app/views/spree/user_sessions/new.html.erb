@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<% if flash[:alert] %>
+  <div class="flash errors"><%= flash[:alert] %></div>
+<% end %>
+
+<% @body_id = 'login' %>
+<div id="existing-customer">
+  <h6><%= Spree.t(:login_como_Usuario_Registrado) %></h6>
+  <div data-hook="login">
+    <%= render partial: 'spree/shared/login' %>
+    <%= Spree.t(:or) %>&nbsp;<%= link_to Spree.t(:Crear_nueva_cuenta), spree.signup_path %> | <%= link_to Spree.t(:Olvide_mi_password), spree.recover_password_path %>
+  </div>
+</div>
+<div data-hook="login_extras"></div>
