@@ -1,0 +1,29 @@
+I"v(function() {
+  var resolveObject;
+
+  resolveObject = function(path, obj) {
+    return path.split('.').reduce((function(prev, curr) {
+      if (prev) {
+        return prev[curr];
+      } else {
+        return void 0;
+      }
+    }), obj || self);
+  };
+
+  Handlebars.registerHelper("t", function(key) {
+    var translation;
+    translation = resolveObject(key, Spree.translations);
+    if (translation) {
+      return translation;
+    }
+    console.error("No translation found for " + key + ".");
+    return key;
+  });
+
+  Handlebars.registerHelper("admin_url", function() {
+    return Spree.pathFor("admin");
+  });
+
+}).call(this);
+:ET
